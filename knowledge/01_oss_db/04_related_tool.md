@@ -10,6 +10,17 @@ pg_ctl: cannot be run as root
 Please log in (using, e.g., "su") as the (unprivileged) user that will own the server process.
 ```
 
+## pg_ctl start
+|オプション|説明|
+|---|---|
+|-D --pgdata|データベースクラスタ指定|
+|-t|最大待ち時間。単位は秒。デフォルトは60s。|
+
+- 時間内に起動しない場合
+    - コマンド自体は失敗
+    - 起動処理は継続される
+- 同じデータベースクラスタを使うプロセスを複数は立ち上げられない
+
 ## pg_ctl stop
 
 |オプション|説明|
@@ -50,7 +61,9 @@ Please log in (using, e.g., "su") as the (unprivileged) user that will own the s
 
 |シグナル|説明|
 |---|---|
-|TERM|スマートシャットダウン|
-|INT|高速シャットダウン|
-|QUIT|即時シャットダウン|
-|HUP|設定ファイル再読み込み|
+|TERM|スマートシャットダウン(terminate=終了)|
+|INT|高速シャットダウン(interupt=妨害)|
+|QUIT|即時シャットダウン(quit=中止)|
+|HUP|設定ファイル再読み込み(hung up)|
+|USR1|ユーザー指定のシグナル?|
+|USR2|ユーザー指定のシグナル?|
