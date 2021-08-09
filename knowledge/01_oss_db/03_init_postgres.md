@@ -27,6 +27,7 @@ root@postgres:/var/lib/postgresql/data# tree -d
 
 - Postgresサーバーに対して1対1
 - 一つのサーバーは複数のPostgresサーバーを起動しうる?
+- pg_hbaはHost Bus Adapterの略?
 
 ## WALとは
 - DBの変更履歴ログ=トランザクションログ
