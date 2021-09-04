@@ -43,6 +43,10 @@ root@postgres:/var/lib/postgresql/data# tree -d
     - datname: データベース名
     - 参考: https://www.postgresql.jp/document/9.3/html/catalog-pg-database.html
 
+```
+SELECT * from pg_database;
+```
+でみれる
 
 # 最初から定義されているデータベース
 
@@ -66,6 +70,11 @@ root@postgres:/var/lib/postgresql/data# tree -d
 - 作成したOSユーザーは*PostgreSQLの管理ユーザ*と呼ばれる
     - postgresユーザーでinitdbを実行すると管理ユーザはpostgresとなる
 
+example:
+```
+initdb --encoding=UTF8 --no-locale /homr/postgres/Data
+```
+
 ```
 initdb --help
 ```
@@ -79,7 +88,7 @@ Usage:
   initdb [OPTION]... [DATADIR]
 
 Options:
-    -D, --pgdata=]DATADIR     location for this database cluster
+    -D, --pgdata=DATADIR     location for this database cluster
     -E, --encoding=ENCODING   set default encoding for new databases
     --locale=LOCALE       set default locale for new databases
     --no-locale           equivalent to --locale=C
@@ -104,10 +113,16 @@ is used.
 - 日本語では通常、*UTF8*と*EUC_JP*が使われる
 - *SJIS*は使用不可
 - db単位で設定可能
+- 現在のDBのencodingは`\encoding`で確認可能。
+> -Eオプションも--encodingオプションも与えられない場合、initdbは、指定もしくはデフォルトのロケールに基づいて適当な符号化方式を決定しようとする([参考](https://www.postgresql.jp/document/9.4/html/multibyte.html))
+
 
 ## locale
 - 設定すると検索性能が低くなる場合があるので、日本語を扱う場合には、無効が推奨されている
 - db単位で設定可能
+
+
+> initdbは、デフォルトでその実行環境のロケール設定に従ってデータベースクラスタを初期化します ([参考](https://www.postgresql.jp/document/9.4/html/locale.html))
 
 ## 注意
 - localeとencodingには互換性がない場合がある
